@@ -1,0 +1,20 @@
+<form action="<%= media_assets_path(format: :html) %>" class="dropzone" id="libraryDropzone">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <a href="javascript:void(0)" class="close-small-uploader"><span class="glyphicon glyphicon-remove"></span></a>
+  <div class="dz-message">
+    <div class="instructions">
+      <p><i class="flaticon-cloud334"></i><br/>
+        Drag and drop your assets here, or click to upload
+      </p>
+      <span class="formats">
+        <span>PNG</span>
+        <span>JPG</span>
+        <span>GIF</span>
+        <span>MP4</span>
+        <span>OOG</span>
+        <span>WEBM</span>
+      </span>
+    </div>
+  </div>
+</form>
+<br/>

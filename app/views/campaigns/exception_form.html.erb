@@ -1,0 +1,106 @@
+<div class="exception-form-wrapper" data-toggle="validator" data-ex-id="" method="post">
+
+  <div class="row no-padding">
+    <div class="col-md-offset-3 col-md-9 no-padding">
+      <div class="error-messages"></div>
+    </div>
+  </div>
+
+  <form class="form-horizontal" id="exception-form" role="form">
+    <div class="form-group">
+      <label class="control-label col-sm-3" for="ex-loop">Loop:</label>
+      <div class="col-sm-9">
+        <%= select_tag "campaign-ex-loop", options_from_collection_for_select(@loop_assets, "id", "displayname"), class: 'form-control', prompt: " -- Select A Loop -- ", required: "true" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-3 col-sm-9">
+        <label><%= generate_checkbox("exception-always") %>  Always</label>
+      </div>
+    </div>
+    <div class="form-group date-range">
+      <label class="control-label col-sm-3" for="date-range">Date Range:</label>
+      <div class="col-sm-9">
+        <div class="js-daterange sf-datepicker input-daterange input-group">
+          <input type="text" class="form-control date-range" id="startDate" name="startDate" value="" required>
+          <span class="input-group-addon">to</span>
+          <input type="text" class="form-control date-range" id="endDate" name="endDate" value="">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-3" for="time-settings">Time Range (24hr):</label>
+      <div class="col-sm-9">
+        <div class="input-append input-group time-settings bootstrap-timepicker">
+          <input type="text" class="sf-timepicker form-control" id="startTime" name="time-start" value="">
+          <span class="input-group-addon">to</span>
+          <input type="text" class="sf-timepicker form-control" id="endTime" name="time-end" value="">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-3" for="days-settings">Days of the Week:</label>
+      <div class="col-sm-9">
+        <div class="btn-group days-of-week" data-toggle="buttons">
+          <% DAYS_OF_THE_WEEK.each do |day| %>
+            <label class="btn btn-primary btn-sm btn-dow" data-day="<%= day.downcase %>">
+              <input type="checkbox"  autocomplete="off"> <%= day %>
+            </label>
+          <% end %>
+      </div>
+      </div>
+    </div>
+
+    <hr/>
+    <div class="form-group">
+      <div class="col-sm-offset-3 col-sm-9">
+        <button type="submit" class="btn btn-primary btn-ex-save"><span class="glyphicon glyphicon-ok"></span> Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script>
+  $(function(){
+    // Callback to re-initialize things
+    SFCampaignsEdit.remoteDialogCallback();
+    // Initialize the exception object
+    SFExceptions.init();
+  })
+</script>
+
+<!--
+<div class="row panel panel-default js-hook" data-ex-id="null">
+  <div class="col-sm-2">
+    <div class="form-group">
+      <label>Loop</label>
+      <select class="form-control js-loop-select">
+        <option disabled="" selected=""> -- Select A Loop -- </option>
+        <option value="2">First Loop</option>
+      </select>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="form-group">
+      <label>Time (24h)</label>
+      <div class="input-append bootstrap-timepicker input-group">
+        <input type="text" class="js-starttimefield form-control" value="undefined:undefined">
+        <span class="input-group-addon">to</span>
+        <input type="text" class="js-endtimefield form-control" value="undefined:undefined">
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="form-group">
+      <label>Dates</label>
+      <div class="js-daterange input-daterange input-group">
+        <input type="text" class="form-control" name="startdate" value="undefined/undefined/undefined">
+        <span class="input-group-addon">to</span>
+        <input type="text" class="form-control" name="enddate" value="undefined/undefined/undefined">
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-2">
+    <table><tbody><tr><td><table><tbody><tr><td>Su</td><td>Mo</td><td>Tu</td><td>We</td><td>Th</td><td>Fr</td><td>Sa</td></tr><tr class="js-repeat-row"><td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr></tbody></table></td><td><a href="javascript:void(0)" class="btn btn-link" onclick="SFCampaignsEdit.removeException($(this));"><span class="glyphicon glyphicon-remove"></span></a></td></tr></tbody></table>
+  </div>
+</div> -->

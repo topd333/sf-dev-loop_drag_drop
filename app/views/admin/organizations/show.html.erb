@@ -1,0 +1,91 @@
+<%= render partial: 'admin/shared/admin_nav' %>
+<p>
+  <strong>Name:</strong>
+  <%= @organization.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @organization.email %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @organization.phone %>
+</p>
+
+<p>
+  <strong>Contact Fist Name:</strong>
+  <%= @organization.fname %>
+</p>
+
+<p>
+  <strong>Contact Last Name:</strong>
+  <%= @organization.lname %>
+</p>
+
+<h3>Shipping Address:</h3>
+<p>
+  <strong>Address Line 1:</strong>
+  <%= @organization.address1 %>
+</p>
+
+<p>
+  <strong>Address Line 2:</strong>
+  <%= @organization.address2 %>
+</p>
+
+<p>
+  <strong>Address Line 3:</strong>
+  <%= @organization.address3 %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @organization.city %>
+</p>
+
+<p>
+  <strong>Province/State:</strong>
+  <%= @organization.province %>
+</p>
+
+<p>
+  <strong>Postal/Zip Code:</strong>
+  <%= @organization.postalcode %>
+</p>
+
+<h3>Billing Address:</h3>
+<p>
+  <strong>Address Line 1:</strong>
+  <%= @organization.baddress1 %>
+</p>
+
+<p>
+  <strong>Address Line 2:</strong>
+  <%= @organization.baddress2 %>
+</p>
+
+<p>
+  <strong>Address Line 3:</strong>
+  <%= @organization.baddress3 %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @organization.bcity %>
+</p>
+
+<p>
+  <strong>Province/State</strong>
+  <%= @organization.bprovince %>
+</p>
+
+<p>
+  <strong>Postal/Zip Code:</strong>
+  <%= @organization.bpostalcode %>
+</p>
+
+
+<p><%= link_to 'Add User', new_admin_user_path(:orgid => @organization.id) %></p>
+<p><%= link_to 'Add Player', new_admin_player_path(:orgid => @organization.id) %></p>

@@ -1,0 +1,40 @@
+<h2>For Organization: <%= @player.organization.name %></h2>
+<%= form_for([:admin, @player]) do |f| %>
+  <% if @player.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@player.errors.count, "error") %> prohibited this player from being saved:</h2>
+
+      <ul>
+      <% @player.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.hidden_field :organization_id %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :serial_number, 'Serial Number' %><br>
+    <%= f.text_field :serial_number %>
+  </div>
+  <div class="field">
+    <%= f.label :admin_hardware_type, 'Hardware Type' %><br>
+    <%= f.collection_select(:admin_hardware_type_id, Admin::HardwareType.all, :id, :model_number, :prompt => 'Please select Model') %>
+  </div>
+  <div class="field">
+    <%= f.label :admin_pay_program, 'Payment Plan' %><br>
+    <%= f.collection_select(:admin_pay_program_id, Admin::PayProgram.all, :id, :name, :prompt => 'Please select payment plan') %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

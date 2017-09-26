@@ -1,0 +1,30 @@
+<%= render partial: 'admin/shared/admin_nav' %>
+<h1>Listing organizations</h1>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @organizations.each do |organization| %>
+      <tr>
+        <td><%= organization.name %></td>
+        <td><%= organization.email %></td>
+        <td><%= organization.phone %></td>
+        <td><%= link_to 'Show', [:admin, organization] %></td>
+        <td><%= link_to 'Edit', edit_admin_organization_path(organization) %></td>
+        <td><%= link_to 'Destroy', [:admin, organization], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= button_to 'JOIN', becomeOrg_admin_organizations_path, {:params => {orgid: organization.id}} %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Organization', new_admin_organization_path %>

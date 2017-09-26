@@ -1,0 +1,6 @@
+<p><strong>Name:</strong> <%= @user.name %></p>
+<p><strong>Email:</strong> <%= @user.email %></p>
+<p><strong>Organization:</strong> <%= link_to @user.organization.name, @user.organization %></p>
+<p><strong>Role:</strong> <%= @user.orgadmin? ? 'Administrator' : 'Standard User' %></p>
+
+<%= link_to 'Edit', edit_user_path(@user) %><br/>

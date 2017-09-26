@@ -1,0 +1,23 @@
+<% if current_page?  media_assets_path %>
+  <!-- <li class="sidebar-upload-wrapper library">
+    <a href="/media_assets/new">
+      <i class="flaticon-cloud334"></i><p class="btn-text">Upload New</p>
+    </a>
+  </li> -->
+  <li class="sidebar-upload-wrapper"></li>
+<% elsif current_page? loop_assets_path %>
+  <!-- <li class="sidebar-upload-wrapper loop">
+    <a href="/loop_assets/new">
+      <i class="flaticon-cloud334"></i><p class="btn-text">Create New</p>
+    </a>
+  </li> -->
+  <li class="sidebar-upload-wrapper"></li>
+<% elsif current_page? campaigns_path %>
+  <li class="sidebar-upload-wrapper campaign text-center">
+    <a href="/campaigns/new">
+      <i class="flaticon-cloud334"></i><p class="btn-text">New Campaign</p>
+    </a>
+  </li>
+<% else %>
+  <li class="sidebar-upload-wrapper"></li>
+<% end %>

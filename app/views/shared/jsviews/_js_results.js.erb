@@ -1,0 +1,16 @@
+$resultsdiv = $("#ajax-results");
+<% if not @ajax_successes.empty? %>
+	$successBlock = $("<div class='alert alert-success'></div>");
+	<% @ajax_successes.each do |success_message| %>
+		$successBlock.append("<%= success_message %><br>");
+	<% end %>
+	$resultsdiv.append($successBlock);
+<% end %>
+
+<% if not @ajax_errors.empty? %>
+	$errorBlock = $("<div class='alert alert-danger'></div>");
+	<% @ajax_errors.each do |error_message| %>
+		$errorBlock.append("<%= error_message %><br>");
+	<% end %>
+	$resultsdiv.append($errorBlock);
+<% end %>

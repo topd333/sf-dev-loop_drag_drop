@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: Test Organization 1
+  email: test1@org1.test
+  phone: 11414
+
+two:
+  name: Test Organization 2
+  email: test2@org2.test
+  phone: 323444

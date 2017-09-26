@@ -1,0 +1,76 @@
+//-- App components
+@import "../common/nav";
+@import "../common/vars";
+@import "../common/overrides";
+
+.campaigns.index {
+	#page-wrapper {
+		a {
+			&:hover, &:focus {
+      }
+		}
+    .btn-main-action{
+      margin: 10px 0px;
+    }
+	}
+}
+
+//-- Campaigns edit page
+.campaigns.edit {
+  .campaign-actions {
+    padding-top:10px;
+    a.btn-link {
+      position: relative;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+  .campaign-edit-left {
+
+  }
+  .campaign-edit-right {
+    padding: 30px;
+    background: #fff;
+    border: 1px solid $general-border-color;
+    border-bottom: none;
+    &.main-loop {
+      border-top-left-radius:5px;
+      border-top-right-radius:5px;
+    }
+    &.exceptions {
+      border-bottom-left-radius:5px;
+      border-bottom-right-radius:5px;
+      border-bottom: 1px solid $general-border-color;
+    }
+
+    #exceptions-container {
+      min-height: 400px;
+      .page-title {
+        padding-bottom: 10px;
+        font-size: 13px;
+      }
+      .list-group-item {
+        &.small {
+          font-size: 11px;
+        }
+      }
+    }
+  }
+}
+
+
+
+//-- Exception adding form
+.exception-form-wrapper {
+  .time-settings {
+    input {
+      text-align: center;
+    }
+  }
+  p.text-danger {
+    padding: 5px;
+    margin: 5px;
+
+  }
+}

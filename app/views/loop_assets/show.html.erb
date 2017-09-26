@@ -1,0 +1,21 @@
+<p>
+  <strong>Displayname:</strong>
+  <%= @loop_asset.displayname %>
+</p>
+
+<table >
+<tr><th></th><th>id</th><th>Display Name</th><th>Duration</th><th colspan="2"></th></tr>
+<% @loop_asset.slide_assets.each_with_index do |slide, index| %>
+	<tr>
+		<td><%= index + 1 %>. </td>
+		<td><%= slide.id %></td>
+		<td><%= slide.displayname %></td>
+		<td><%= slide.duration %></td>
+		<td><%= link_to 'Show', loop_asset_slide_asset_path(@loop_asset, slide) %></td>
+		<td><%= link_to 'Edit', edit_loop_asset_slide_asset_path(@loop_asset, slide) %></td>
+	</tr>
+<% end %>
+</table>
+
+<%= link_to 'Edit', edit_loop_asset_path(@loop_asset) %> |
+<%= link_to 'Back', loop_assets_path %>

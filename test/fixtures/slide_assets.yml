@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  loop_asset_id: 
+  organization_id: 
+  slide_template_id: 
+
+two:
+  loop_asset_id: 
+  organization_id: 
+  slide_template_id: 

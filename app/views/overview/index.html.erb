@@ -1,0 +1,94 @@
+<h1 class="page-title">Overview</h1>
+
+<div class="row overview-blocks">
+  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 overview-block">
+    <%= link_to media_assets_path do %>
+      <div class="circle-number media-assets hvr-glow">
+        <%= @media_assets_count %>
+      </div>
+      <div class="block-caption">
+        <%= 'Media Asset'.pluralize @media_assets_count %>
+      </div>
+      <div class="block-subcaption">
+        (<%= bytes_to_megabytes(@media_assets_total_size).round 2 %> MB)
+      </div>
+    <%end%>
+  </div>
+  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 overview-block">
+    <%= link_to loop_assets_path do %>
+      <div class="circle-number loops hvr-glow">
+        <%= @loop_assets_count %>
+      </div>
+      <div class="block-caption">
+        <%= 'Loop'.pluralize @loop_assets_count %>
+      </div>
+      <div class="block-subcaption">
+        <%= ms_to_words(@loop_assets_duration) %>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 overview-block">
+    <%= link_to campaigns_path do %>
+      <div class="circle-number campaigns hvr-glow">
+        <%= @campaigns_count %>
+      </div>
+      <div class="block-caption">
+        <%= 'Campaigns'.pluralize @campaigns_count %>
+      </div>
+      <div class="block-subcaption">
+        (<%= @active_campaigns_count %> Active)
+      </div>
+    <% end %>
+  </div>
+  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 overview-block">
+    <%= link_to players_path do %>
+      <div class="circle-number screens hvr-glow">
+        <%= @players_count %>
+      </div>
+      <div class="block-caption">
+        <%= 'Player'.pluralize @players_count %>
+      </div>
+      <div class="block-subcaption">
+        (<%= @active_players_count %> Active)
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-6 col-md-6 col-sm-12">
+    <h1 class="page-title">Recent Activity</h1>
+    <div class="updates">
+      <% @logs.each do |entry| %>
+        <%= link_to entry.loggable do %>
+          <div class="update">
+            <%= entry.user.name %> <%= entry.action %> <%= time_ago_in_words(entry.created_at).gsub('about','') %> ago
+          </div>
+        <% end %>
+      <% end %>
+      <div class="more-updates-button">
+        (more)
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-2 col-md-2 col-sm-0"></div>
+
+  <div class="col-lg-4 col-md-4 col-sm-12">
+    <h1 class="page-title">Status</h1>
+    <div class="statuses">
+      <div class="status">
+        <span class="status-indicator"></span>
+        <%= @online_players_count %> players online
+      </div>
+      <div class="status">
+        <span class="status-indicator"></span>
+        <%= @offline_players_count %> players offline
+      </div>
+      <div class="status">
+        <span class="status-indicator"></span>
+        <%= @pending_players_count %> players pending
+      </div>
+    </div>
+  </div>
+</div>

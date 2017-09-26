@@ -1,0 +1,17 @@
+{
+  "name": "dsl-generated dependencies",
+  "dependencies": {
+    "isotope": "latest",
+    "isotope-cells-by-row": "latest",
+    "dropzone": "latest",
+    "awesome-bootstrap-checkbox": "latest",
+    "unveil": "latest",
+    "bootstrap3-dialog": "latest",
+    "spin": "latest",
+    "bootstrap-select": "latest",
+    "moment": "latest",
+    "remarkable-bootstrap-notify": "latest",
+    "iCheck": "latest",
+    "bootstrap-timepicker": "latest"
+  }
+}

@@ -1,0 +1,6 @@
+<%= render partial: 'shared/jsviews/js_results' %>
+<% if not @destroy_multiple_successes.empty? %>
+	<% @destroy_multiple_successes.each do |success_id| %>
+		$("[data-loop-id='<%= success_id %>']").remove();
+	<% end %>
+<% end %>

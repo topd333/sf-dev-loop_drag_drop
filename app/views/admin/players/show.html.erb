@@ -1,0 +1,54 @@
+<%= render partial: 'admin/shared/admin_nav' %>
+<p id="notice"><%= notice %></p>
+<p>
+  <strong>Name:</strong>
+  <%= @player.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @player.description %>
+</p>
+
+<p>
+  <strong>Hardware Type:</strong>
+  <%= link_to @player.admin_hardware_type.model_number, @player.admin_hardware_type %>
+</p>
+
+<p>
+  <strong>Serial Number:</strong>
+  <%= @player.serial_number %>
+</p>
+
+<p>
+  <strong>Payment Plan:</strong>
+  <%= link_to @player.admin_pay_program.name, @player.admin_pay_program %>
+</p>
+
+<p>
+  <strong>Campaign:</strong>
+  <%= @player.campaign ? @player.campaign.displayname : 'None Selected' %>
+</p>
+
+<p>
+	<strong>Player Registration Details</strong><br>
+	Player Code: <%= @player.id %><br>
+	Access Code: <%= @player.access_code %> 
+</p>
+
+<p>
+
+	<% if (pa=@player.pending_action) %>
+		<strong>Pending Action:</strong> 
+		<%= pa %>
+		<%= button_to 'Clear', sendCommand_player_path(@player), {:method => :post, :params => {command: 'clear'}} %>
+		<br/>
+	<% end %>
+	<%= button_to 'Restart Player', sendCommand_player_path(@player), {:method => :post, :params => {command: 'restart'}} %>
+	<%= button_to 'Force Content Reload', sendCommand_player_path(@player), {:method => :post, :params => {command: 'contentReload'}} %>
+  <%= button_to 'Reset Connection', resetconnection_admin_player_path(@player) %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_player_path(@player) %> |
+<%= link_to 'Back', admin_players_path %>

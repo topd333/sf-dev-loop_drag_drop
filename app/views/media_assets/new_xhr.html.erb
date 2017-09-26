@@ -1,0 +1,50 @@
+<div class="item hvr-glow <%= asset_classes(@media_asset) %>" data-uploaded="<%= @media_asset.created_at.to_i %>" data-duration="<%= @media_asset.duration || 0 %>">
+  <div class="thumbnail">
+
+    <div class="overlay">
+      <div class="row no-padding">
+        <div class="col-sm-4 no-padding left-menu">
+           <%= build_preview_icon(@media_asset) %>
+        </div>
+
+        <div class="col-sm-8 no-padding">
+          <ul class="tool-menu list-inline pull-right">
+           <li>
+              <a href="javascript:void(0)" class="delete-asset-link" id="delete-asset-link-<%= @media_asset.id %>" onclick="SFLibrary.confirm_delete(<%= @media_asset.id %>)"><i class="flaticon-delete84"></i></a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="delete-confirm hidden" id="delete-container-<%= @media_asset.id %>">
+        <%= link_to 'Confirm?', media_asset_path(@media_asset), remote: true, method: :delete, class: "btn btn-danger confirm-delete" %> <a href="#" class="confirm-cancel" onclick="SFLibrary.confirm_cancel(<%= @media_asset.id %>)"> cancel</a>
+      </div>
+
+    </div>
+    <img class="group asset-image" src="<%= @media_asset.asset_file.url(:thumb) %>" alt="" />
+    <div class="asset-details">
+      <span class="asset-size"><%= bytes_to_megabytes(@media_asset.asset_file_file_size).round 2 %> MB</span>
+      <span class="asset-uploaded pull-right"><%= time_ago_in_words(@media_asset.created_at).gsub('about','') %> ago</span>
+    </div>
+  </div>
+
+  <div class="asset-info">
+    <div class="row no-padding">
+      <div class="col-md-1 asset-icon no-padding">
+        <% if @media_asset.asset_file_content_type.start_with? 'image' %>
+          <i class="flaticon-image84"></i>
+        <% elsif @media_asset.asset_file_content_type.start_with? 'video' %>
+          <i class="flaticon-movie42"></i>
+        <% end %>
+      </div>
+      <div class="asset-name col-md-11 no-padding">
+        <h2 title="Edit asset title">
+          <span class="asset-name-edit" id="displayname" title="Edit Asset Name" data-type="text" data-pk="<%= @media_asset.id %>"><%= @media_asset.displayname %></span>
+        </h2>
+        <span class="asset-name-edit-icon glyphicon glyphicon-pencil" style="display:none;"></span>
+
+      </div>
+    </div>
+  </div>
+</div>

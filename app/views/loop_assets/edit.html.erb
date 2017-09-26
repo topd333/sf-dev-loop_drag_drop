@@ -1,0 +1,108 @@
+<div class="row ">
+
+  <div class="col-md-7">
+
+    <!-- Controls -->
+    <%= render partial: "edit_library_controls" %>
+
+    <div id="loop-asset-container" class="asset-list-container">
+      <% @media_assets.each do |media_asset| %>
+        <div class="item hvr-glow <%= asset_classes(media_asset) %> loop-asset-draggable" data-uploaded="<%= media_asset.created_at.to_i %>" data-id="<%= media_asset.id %>" data-duration="<%= media_asset.duration || 0 %>">
+          <%= render partial: "media_asset", object: media_asset %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="col-md-5">
+    <div class="row no-padding">
+      <div class="col-md-12 text-right no-padding actions loop-edit-actions">
+        <a href="<%= loop_assets_path %>" class="btn btn-link"><span class="glyphicon glyphicon-remove"></span> Cancel</a>
+        <a href="<%= loop_assets_path %>" id="loop-save-btn" class="btn btn-primary pull-right" data-title="Create New Loop"><span class="glyphicon glyphicon-ok"></span> Save Changes</a>
+      </div>
+    </div>
+
+    <hr class="drop-area-separator"/>
+
+    <div class="row no-padding">
+        <div class="text-left col-md-6 no-padding"><%= @loop_asset.displayname %></div>
+        <div class="text-right col-md-6 no-padding">Running Time: <span id="running-time"></span></div>
+    </div>
+    <br/>
+
+    <div id="loop-asset-drop-area">
+      <h4>Drop here</h4>
+    </div>
+    <!-- <form id="loop-update" action="<%= loop_asset_path(@loop_asset) %>" method="PUT"> -->
+    <%= form_for @loop_asset, url: {action: "update"}, html: {id: "loop-update"} do |f| %>
+      <%= f.hidden_field :id %>
+      <%= f.hidden_field :loop_json_string %>
+    <% end %>
+
+    <div id="loop-asset-list">
+      <% @loop_asset.slide_assets.each do |slide| %>
+        <div class="loop-asset-item row" data-slide-id="<%= slide.id %>" data-media-id="<%= slide.media_asset.id %>" data-media-type="<%= media_asset_type(slide) %>">
+          <div class="col-md-1 sort-icon-col no-gutter">
+            <span class="glyphicon glyphicon-option-vertical sort-icon"></span>
+          </div>
+          <div class="col-md-2 loop-asset-img-col no-gutter">
+            <img class="thumbnail" src="<%= slide.media_asset.asset_file.url(:thumb) %>" />
+          </div>
+          <div class="col-md-4 loop-asset-name-col no-gutter">
+            <div class="loop-asset-name text-truncate no-gutter"><%= slide.media_asset.displayname %></div>
+          </div>
+          <div class="col-md-3 loop-asset-duration-col no-gutter">
+            <div class="form-group form-group-sm">
+              <% if slide.media_asset.is_image? %>
+                <input type="number" min="0" step="any" class="form-control input-sm asset-duration" name="duration" value="<%= slide.duration / 1000 %>" /><span>secs</span>
+              <% else %>
+                <span class="asset-duration-length"><%= slide.media_asset.duration_formatted %> secs</span>
+                <input type="hidden" name="duration" class="asset-duration" value="<%= slide.media_asset.duration_formatted %>" />
+              <% end %>
+            </div>
+          </div>
+          <div class="col-md-1 loop-asset-type-col no-gutter">
+            <i class="flaticon-<%= slide.media_asset.asset_icon_type %>"></i>
+          </div>
+          <div class="col-md-1 remove-icon-col text-right">
+            <a class="remove-item" data-id="<%= slide.media_asset.id %>" href="javascript:void(0);"><span class="glyphicon glyphicon-remove"></span></a>
+          </div>
+        </div>
+      <% end %>
+
+    </div>
+
+</div>
+
+<%# This is just a javascript template for jsrender %>
+<% content_for :head do %>
+  <script id="loop-asset-item-template" type="text/x-jsrender">
+    <div class="loop-asset-item row" data-slide-id="new" data-media-id="{{:id}}" data-media-type="{{:media_type}}">
+      <div class="col-md-1 sort-icon-col no-gutter">
+        <span class="glyphicon glyphicon-option-vertical sort-icon"></span>
+      </div>
+      <div class="col-md-2 loop-asset-img-col no-gutter">
+        <img class="thumbnail" src="{{:thumbnail_url}}" />
+      </div>
+      <div class="col-md-4 loop-asset-name-col no-gutter">
+        <div class="loop-asset-name text-truncate no-gutter">{{:displayname}}</div>
+      </div>
+      <div class="col-md-3 loop-asset-duration-col no-gutter">
+        <div class="form-group form-group-sm">
+          {{if media_type == 'image'}}
+            <input type="number" step="any" class="form-control input-sm asset-duration" name="duration" /><span>secs</span>
+          {{else}}
+              <span class="asset-duration-length">{{:duration_formatted}} secs</span>
+              <input type="hidden" name="duration" class="asset-duration" value="{{:duration_formatted}}" />
+          {{/if}}
+        </div>
+      </div>
+      <div class="col-md-1 loop-asset-type-col no-gutter">
+        <i class="flaticon-{{:asset_icon_type}}"></i>
+      </div>
+      <div class="col-md-1 remove-icon-col text-right">
+        <a class="remove-item" data-id="{{:id}}" href="javascript:void(0);"><span class="glyphicon glyphicon-remove"></span></a>
+      </div>
+    </div>
+  </script>
+<% end %>

@@ -1,0 +1,15 @@
+<%= render partial: 'admin/shared/admin_nav' %>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Model number:</strong>
+  <%= @admin_hardware_type.model_number %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @admin_hardware_type.description %>
+</p>
+
+<%= link_to 'Edit', edit_admin_hardware_type_path(@admin_hardware_type) %> |
+<%= link_to 'Back', admin_hardware_types_path %>

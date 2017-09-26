@@ -1,0 +1,15 @@
+//-- App components
+@import "common/nav";
+@import "common/vars";
+@import "common/overrides";
+
+.icon-logo.login {
+  font-size: 40px;
+}
+
+.login-well {
+  background: #fff;
+  border: 1px solid $general-border-color;
+  border-radius: 5px;
+  padding: 30px;
+}

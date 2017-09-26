@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-md-6 no-gutter">
+    <h1 class="page-title">Campaigns</h1>
+  </div>
+  <div class="col-md-6 text-right actions campaign-actions">
+    <div class="row">
+      <div class="col-md-12 text-right no-padding">
+        <a href="<%= new_campaign_path %>" class="btn btn-main-action add-new-campaign btn-action pull-right">
+          <i class="flaticon-add139"></i> Add New Campaign
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<hr class="page-title-hr">
+
+<table class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number Of Loops</th>
+      <th>Number Of Screens Using</th>
+      <th colspan="2">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @campaigns.each do |campaign| %>
+      <tr>
+        <td><a href="<%= edit_campaign_path(campaign) %>"><%= campaign.displayname %></a></td>
+        <td><%= campaign.loop_assets.count %></td>
+        <td><%= campaign.players.count %></td>
+        <td>
+          <a href="<%= edit_campaign_path(campaign) %>" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+          <%= link_to '<span class="glyphicon glyphicon-remove"></span> Delete'.html_safe, campaign, method: :delete, class: "btn btn-default btn-sm", data: { confirm: 'Are you sure?' } %>
+        </td>
+        <td></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

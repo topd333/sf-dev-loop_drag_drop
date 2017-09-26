@@ -1,0 +1,27 @@
+<%= render partial: 'shared/title_with_crud_buttons', locals: {title: 'Library', delete_button_path: destroy_multiple_media_assets_path} %>
+
+<div id="ajax-results"></div>
+
+<%= render partial: 'media_assets/controls' %>
+
+<% content_for :head do %>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+<% end %>
+
+<div class="row">
+  <div class="col-md-12">
+    <div id="asset-container" class="asset-list-container">
+
+      <% @media_assets.each do |media_asset| %>
+
+        <div class="item hvr-glow <%= asset_classes(media_asset) %>" data-uploaded="<%= media_asset.created_at.to_i %>" data-duration="<%= media_asset.duration || 0 %>">
+          <%= render partial: "media_asset", object: media_asset %>
+        </div>
+
+      <% end %>
+
+    </div>
+  </div>
+
+</div>

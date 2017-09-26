@@ -1,0 +1,30 @@
+<%= render partial: 'admin/shared/admin_nav' %>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @admin_pay_program.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @admin_pay_program.description %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @admin_pay_program.price %>
+</p>
+
+<p>
+  <strong>Available:</strong>
+  <%= @admin_pay_program.available %>
+</p>
+
+<p>
+  <strong>Period:</strong>
+  <%= @admin_pay_program.period %>
+</p>
+
+<%= link_to 'Edit', edit_admin_pay_program_path(@admin_pay_program) %> |
+<%= link_to 'Back', admin_pay_programs_path %>

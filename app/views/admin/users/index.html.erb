@@ -1,0 +1,10 @@
+<%= render partial: 'admin/shared/admin_nav' %>
+<h1>All users</h1>
+
+<%= will_paginate %>
+
+<ul>
+	<%= render @users %>
+</ul>
+
+<%= will_paginate %>

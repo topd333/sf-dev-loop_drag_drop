@@ -1,0 +1,22 @@
+<%= render partial: 'shared/title_with_crud_buttons', locals: {title: 'Loops', delete_button_path: destroy_multiple_loop_assets_path} %>
+
+<div id="ajax-results"></div>
+
+<%= render partial: 'loop_assets/controls' %>
+
+<div class="row">
+  <div class="col-md-12">
+    <div id="asset-container" class="content-wrapper loop-list-container">
+
+      <% @loop_assets.each do |loop_asset| %>
+
+        <div class="item hvr-glow loop-asset-item" data-uploaded="<%= loop_asset.created_at.to_i %>" data-id="<%= loop_asset.id %>" data-url="<%= edit_loop_asset_path(loop_asset) %>">
+          <%= render partial: "loop_asset", object: loop_asset %>
+        </div>
+
+      <% end %>
+
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,16 @@
+<h1>All users</h1>
+
+<%= will_paginate %>
+
+<table class="table table-bordered">
+	<tr>
+		<th>Name</th>
+		<th>Email</th>
+		<th>Role</th>
+	</tr>
+	<%= render @users %>
+</table>
+
+<%= will_paginate %>
+
+<p><%= link_to "Click Here", signup_path %> to add new user to your organization</p>

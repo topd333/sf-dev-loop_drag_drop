@@ -1,0 +1,108 @@
+<!-- Pass the campaign data to javascript -->
+<%= javascript_tag do %>
+	var hooks = <%= raw @hooks_json %>;
+	var loops_available = <%= raw @available_loops_json %>;
+<% end %>
+
+<div class="row">
+	<div class="col-md-6 no-gutter">
+		<h1 class="page-title campaign-name"><%= @campaign.displayname %></h1>
+	</div>
+	<div class="col-md-6 text-right actions campaign-actions no-padding">
+    <%= button_to @campaign, method: :patch, remote: true, class: "btn btn-primary pull-right btn-save", form: { "data-ajax-handle" => "save-campaign" }  do %>
+        <span class="glyphicon glyphicon-ok"></span> Save Changes
+    <% end %>
+    <a href="<%= campaigns_path %>" class="btn btn-link pull-right"><span class="glyphicon glyphicon-remove"></span> Cancel</a>
+	</div>
+</div>
+<hr class="page-title-hr">
+<br/>
+
+<div class="row">
+  <div class="col-md-3 campaign-edit-left">
+    <h4 class="left-title">Select Main Loop</h4>
+  </div>
+  <div class="col-md-9 campaign-edit-right main-loop">
+    <div id="mainloop-container">
+      <div class="row">
+        <div class="form-group col-md-6 no-gutter">
+          <%= select_tag "campaign-main-loop", options_from_collection_for_select(@loop_assets, "id", "displayname", @main_loop_asset_id), class: 'form-control', prompt: " -- Select A Loop -- " %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-3 campaign-edit-left">
+    <h4 class="left-title">Create Exceptions</h4>
+    <button id="add-ex-button" type="button" class="btn btn-default" data-url="<%= exception_form_campaign_path(@campaign) %>"><span class="glyphicon glyphicon-plus-sign"></span> Add New Exception</button>
+  </div>
+  <div class="col-md-9 campaign-edit-right exceptions">
+    <div id="exceptions-container">
+      <h3 class="page-title no-padding">Exception List</h3>
+      <ul class="list-group exception-list">
+        <li class="list-group-item ex-item no-exceptions"><strong>No Exceptions</strong></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<%# This is just a javascript template for jsrender %>
+<% content_for :head do %>
+  <script id="campaign-exception-template" type="text/x-jsrender">
+    <li class="list-group-item ex-item">
+      <div class="row">
+
+        <div class="col-md-2">
+          <dl>
+            <dt>Loop Name:</dt>
+            <dd>{{:exLoopName}}</dd>
+          </dl>
+        </div>
+
+        <div class="col-md-3">
+          <dl>
+            <dt>Date Range:</dt>
+            <dd>
+              <table class="small">
+                <tr><td>START:</td> <td><span class="startDate">{{:startDate}}</span></td></tr>
+                <tr><td>END:</td> <td><span class="endDate">{{:endDate}}</span></td></tr>
+              </table>
+            </dd>
+           </dl>
+        </div>
+
+        <div class="col-md-3">
+          <dl>
+            <dt>Time Range:</dt>
+            <dd>
+              <table class="small">
+                <tr><td>START:</td> <td><span class="startTime">{{:startTime}}</span></td></tr>
+                <tr><td>END:</td> <td><span class="endTime">{{:endTime}}</span></td></tr>
+              </table>
+            </dd>
+          </dl>
+        </div>
+
+        <div class="col-md-3">
+          <dl>
+            <dt>Days of Week:</dt>
+            <dd class="small">{{:daysString}}</dd>
+          </dl>
+        </div>
+
+        <div class="col-md-1 text-right"><a class="remove-item" href="javascript:void(0);"><span class="glyphicon glyphicon-remove"></span></a>
+        </div>
+
+      </div>
+
+    </li>
+  </script>
+<% end %>
+
+
+
+
+
+

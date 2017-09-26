@@ -1,0 +1,27 @@
+<%= render partial: 'admin/shared/admin_nav' %>
+<!-- ADMIN PAGE -->
+<h1>Sign up</h1>
+
+<%= form_for([:admin, @user]) do |f| %>
+	<%= render 'shared/error_messages' %>
+	
+	<%= f.label :name %>
+	<%= f.text_field :name %>
+	<br/>
+	<%= f.label :email %>
+	<%= f.text_field :email %>
+	<br/>
+	<%= f.label :password %>
+	<%= f.password_field :password %>
+	<br/>
+	<%= f.label :password_confirmation, "Confirmation" %>
+	<%= f.password_field :password_confirmation %>
+	<br/>
+	<%= f.label :organization_id, "Organization" %>
+	<%= f.collection_select :organization_id, Organization.all, :id, :name, include_blank: true %>
+	<br/>
+	<%= f.label :orgadmin, "Is Organization Administrator" %>
+	<%= f.check_box :orgadmin %>
+	<br/>
+	<%= f.submit "Create my account" %>
+<% end %>

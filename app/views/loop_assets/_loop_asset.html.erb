@@ -1,0 +1,43 @@
+<div class="thumbnail">
+
+  <div class="overlay">
+    <div class="row no-padding">
+      <div class="col-sm-4 no-padding left-menu">
+         <a href="<%= edit_loop_asset_path(loop_asset) %>" class="show-preview-link pull-left edit-loop-icon"><i class="glyphicon glyphicon-cog"></i></a>
+      </div>
+
+      <div class="col-sm-8 no-padding tools">
+        <ul class="tool-menu list-inline pull-right">
+          <li>
+            <a href="javascript:void(0);" class="delete-asset-link" id="delete-asset-link-<%= loop_asset.id %>" onclick="return SFLoops.confirm_delete(<%= loop_asset.id %>);"><i class="flaticon-delete84"></i></a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="delete-confirm hidden" id="delete-container-<%= loop_asset.id %>">
+      <%= link_to 'Confirm', loop_asset_path(loop_asset), remote: true, method: :delete, class: "btn btn-danger confirm-delete" %> <a href="javascript:void(0)" class="confirm-cancel" onclick="SFLoops.confirm_cancel(<%= loop_asset.id %>)"> cancel</a>
+    </div>
+  </div>
+
+  <%= build_image_tag(loop_asset) %>
+
+  <div class="asset-details">
+    <!-- <span class="asset-size">2 MB</span> -->
+    <span class="asset-uploaded pull-right"><%= time_ago_in_words(loop_asset.created_at).gsub('about','') %> ago</span>
+  </div>
+</div>
+
+<div class="asset-info">
+  <div class="row no-padding">
+    <div class="col-md-4 asset-icon loop-asset-count no-padding"><%= loop_asset.slide_assets.count %> assets</div>
+    <div class="asset-name col-md-8 no-padding">
+      <h2 title="Edit asset title">
+        <span class="asset-name-edit" id="displayname" title="Edit Asset Name" data-type="text" data-pk="<%= loop_asset.id %>"><%= loop_asset.displayname %></span>
+      </h2>
+      <span class="asset-name-edit-icon glyphicon glyphicon-pencil" style="display:none;"></span>
+
+    </div>
+  </div>
+</div>

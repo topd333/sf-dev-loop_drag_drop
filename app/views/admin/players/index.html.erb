@@ -1,0 +1,60 @@
+<%= render partial: 'admin/shared/admin_nav' %>
+<h1>Listing players</h1>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Organization</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Running Campaign</th>
+      <th>Last Connection</th>
+      <th>Diagnostics</th>
+      <th colspan="2">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @players.each do |player| %>
+      <tr>
+        <td><%= link_to player.organization.name, [:admin, player.organization] %></td>
+        <td><%= link_to player.name, [:admin, player] %></td>
+        <td><%= player.description %></td>
+        <td><%= player.campaign.displayname if player.campaign %></td>
+        <td><%= time_ago_in_words(player.last_connection)%> ago</td>
+        <td><%= player.diagnostics %></td>
+        <td><%= link_to 'Edit', edit_admin_player_path(player) %></td>
+        <td><%= link_to 'Destroy', [:admin, player], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+<% if !@pendingplayers.empty?%>
+  <h4>Pending Players</h4>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Organization</th>
+        <th>Player Code</th>
+        <th>Access Code</th>
+        <th colspan="2">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @pendingplayers.each do |pplayer| %>
+        <tr>
+          <td><%= link_to pplayer.organization.name, [:admin, pplayer.organization] %></td>
+          <td><%= pplayer.id %></td>
+          <td><%= pplayer.access_code %></td>
+          <td><%= link_to 'Destroy', [:admin, pplayer], method: :delete, data: { confirm: 'Are you sure you want to delete this player?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

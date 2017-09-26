@@ -1,0 +1,95 @@
+//-- App components
+@import "../common/nav";
+@import "../common/vars";
+@import "../common/overrides";
+
+//--- Overview Page
+body.overview {
+
+  a:hover {
+    text-decoration: none;
+  }
+
+  .overview-blocks {
+
+    .overview-block {
+      padding: 20px 0px;
+      text-align: center;
+    }
+    .circle-number {
+      display: block;
+      height: 100px;
+      width: 100px;
+      line-height: 100px;
+
+      -moz-border-radius: 30px; /* or 50% */
+      border-radius: 50px; /* or 50% */
+
+      color: white;
+      text-align: center;
+      font-size: 4em;
+
+      margin: 0 auto;
+
+      &.media-assets{
+        background-color: #70B14A;
+      }
+
+      &.loops{
+        background-color: #7790B0;
+      }
+
+      &.campaigns{
+        background-color: #DBA854;
+      }
+
+      &.screens{
+        background-color: #D3655D;
+      }
+    }
+
+    .block-caption{
+      text-transform: uppercase;
+      font-weight: 900;
+      color: #9D9D9D;
+      margin-top: 10px;
+    }
+
+    .block-subcaption{
+      color: #97AAC2;
+      font-style: italic;
+    }
+  }
+
+  .updates{
+    color: #7790B0;
+
+    .update{
+      padding: 8px 15px;
+      background-color: #DFE8F2;
+      margin-bottom: 5px;
+      font-size: 1.2em;
+    }
+  }
+
+  .statuses{
+    color: #7790B0;
+
+    .status{
+      padding: 8px 15px;
+      background-color: #DFE8F2;
+      margin-bottom: 5px;
+      font-size: 1.2em;
+
+      .status-indicator{
+        height: 100%;
+        width: 20px;
+        background-color: black;
+      }
+    }
+  }
+
+  .more-updates-button{
+    text-align: center;
+  }
+}

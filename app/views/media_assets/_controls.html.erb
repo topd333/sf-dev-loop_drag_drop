@@ -1,0 +1,47 @@
+<div class="row controls no-gutter">
+
+  <div class="col-md-12">
+
+    <div class="row asset-upload-area" style="display:none">
+      <div class="col-md-12">
+        <%= render partial: "upload_area" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="no-gutter col-sm-6 text-left">
+        <ul class="nav pull-left">
+          <li class="dropdown">
+            <a class="dropdown-toggle control-link" data-toggle="dropdown" href="javascript:void(0);" aria-expanded="false">Select (<%= @media_assets.count %>) <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="filter-options" data-filter="">All Assets <span class="pull-right">(<%= @media_assets.count %>)</span></a></li>
+              <li><a class="filter-options" data-filter=".image">Images <span class="pull-right">(<%= @image_assets_count %>)</span></a></li>
+              <li><a class="filter-options" data-filter=".video">Video <span class="pull-right">(<%= @video_assets_count %>)</span></a></li>
+            </ul>
+          </li>
+        </ul>
+
+        <div class="btn-group pull-left search-control">
+          <input id="quicksearch" type="search" class="form-control input-sm" />
+          <span id="searchclear" class="glyphicon glyphicon-remove-circle"></span>
+        </div>
+      </div>
+
+      <div class="col-md-6 text-right">
+        <a class="btn btn-upload-assets btn-action pull-right"><i class="flaticon-cloud334"></i>Upload Assets</a>
+
+        <div class="btn-group btn-group-sm sort-controls" role="group" aria-label="...">
+          <button type="button" class="btn btn-default asset-sort-options" data-sort="name" data-dir="asc">Name</button>
+          <button type="button" class="btn btn-default asset-sort-options" data-sort="size" data-dir="asc">Size</button>
+          <button type="button" class="btn btn-default asset-sort-options" data-sort="duration" data-dir="asc">Duration</button>
+          <button type="button" class="btn btn-default asset-sort-options" data-sort="uploaded" data-dir="asc">Date</button>
+        </div>
+
+      </div>
+
+    </div>
+    <hr/>
+
+  </div><!-- end row -->
+</div>

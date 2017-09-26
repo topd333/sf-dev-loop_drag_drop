@@ -1,0 +1,20 @@
+<!-- ADMIN PAGE -->
+<%= render partial: 'admin/shared/admin_nav' %>
+
+<%= render partial: 'shared/title_with_crud_buttons', locals: {title: 'Admin Panel', delete_button_path: nil} %>
+<br>
+
+<div class='container'>
+	<div class='row'>
+		<div class='col-sm-2'>Number of Organizations</div>
+		<div class='col-sm-10'><%= Organization.count %></div>
+	</div>
+	<div class='row'>
+		<div class='col-sm-2'>Number of Players</div>
+		<div class='col-sm-10'><%= Player.count %></div>
+	</div>
+	<div class='row'>
+		<div class='col-sm-2'>Number of Users</div>
+		<div class='col-sm-10'><%= User.count %></div>
+	</div>
+</div>

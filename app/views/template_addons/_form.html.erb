@@ -1,0 +1,25 @@
+<%= form_for(@template_addon) do |f| %>
+  <% if @template_addon.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@template_addon.errors.count, "error") %> prohibited this template_addon from being saved:</h2>
+
+      <ul>
+      <% @template_addon.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :file %><br>
+    <%= f.file_field :file %>
+  </div>
+  <div class="field">
+    <%= f.label :displayname %><br>
+    <%= f.text_field :displayname %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

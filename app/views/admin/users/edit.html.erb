@@ -1,0 +1,25 @@
+<%= render partial: 'admin/shared/admin_nav' %>
+<h1>Update profile</h1>
+
+<%= form_for([:admin, @user]) do |f| %>
+	<%= render 'shared/error_messages' %>
+
+	<%= f.label :name %>
+	<%= f.text_field :name %>
+	<br/>
+	<%= f.label :email %>
+	<%= f.text_field :email %>
+	<br/>
+	<%= f.label :password %>
+	<%= f.password_field :password %>
+	 Leave Blank for no change
+	<br/>
+	<%= f.label :password_confirmation, "Confirmation" %>
+	<%= f.password_field :password_confirmation %>
+	 Leave Blank for no change
+	<br/>
+	<%= f.label :default_slide_duration, "Default duration for slide" %>
+	<%= f.text_field :default_slide_duration %>
+	<br/>
+	<%= f.submit "Save changes" %>
+<% end %>

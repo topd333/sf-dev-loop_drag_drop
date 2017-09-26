@@ -1,0 +1,130 @@
+<%= render partial: 'media_assets/controls' %>
+
+<% content_for :head do %>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+
+  <script>
+
+  </script>
+<% end %>
+
+<div class="row">
+  <div class="col-md-12">
+    <div id="asset-container" class="asset-list-container">
+  <% @media_assets.each do |media_asset| %>
+
+    <div class="item hvr-glow <%= asset_classes(media_asset) %>" data-uploaded="<%= media_asset.created_at.to_i %>" data-duration="<%= media_asset.duration || 0 %>">
+      <%= render partial: "media_asset", object: media_asset %>
+    </div>
+
+  <% end %>
+    </div>
+  </div>
+
+</div>
+<script>
+$(function(){
+
+  SFLibrary.init();
+
+  $('.btn-upload-assets').remove();
+
+  //--- FILTER/SEARCH/SORT
+  var qsRegex;
+  var selectFilter;
+  var $container = $('#asset-container');
+
+  $container.isotope({
+    itemSelector: '.item',
+    layoutMode: 'cellsByRow',
+    cellsByRow: {
+      columnWidth: 240,
+      rowHeight: 182
+    },
+    filter: function() {
+      var $this = $(this);
+      var searchResult = qsRegex ? $this.text().match( qsRegex ) : true;
+      var selectResult = selectFilter ? $this.is( selectFilter ) : true;
+      return searchResult && selectResult;
+    },
+    getSortData: {
+      name: '.asset-name',
+      nameDesc: '.asset-name',
+      size: '.asset-size',
+      sizeDesc: '.asset-size',
+      duration: '[data-duration]',
+      durationDesc: '[data-duration]',
+      uploaded: '[data-uploaded]',
+      uploadedDesc: '[data-uploaded]'
+    }
+  });
+
+  $('.filter-options').on('click', function () {
+    selectFilter = $(this).data('filter');
+    $container.isotope();
+  });
+
+  var $quicksearch = $('#quicksearch').keyup( debounce( function() {
+    qsRegex = new RegExp( $quicksearch.val(), 'gi' );
+    $container.isotope();
+  }));
+
+  // Main sort options
+  $('.sort-options').on('click', function () {
+    var option = $(this).data('sort');
+
+    console.log(option);
+
+    SFLibrary.toggleSortDirection($(this));
+
+    $container.isotope({
+      sortBy : option,
+      sortAscending: {
+        nameDesc: false,
+        sizeDesc: false,
+        durationDesc: false,
+        uploaded: false // Reverse uploaded for timestamp
+      }
+    });
+  });
+
+  // Main Callback when everything is complete
+  $container.isotope( 'on', 'layoutComplete', function(){
+    // $("img").unveil();
+  });
+
+  // debounce so filtering doesn't happen every millisecond
+  function debounce( fn, threshold ) {
+    var timeout;
+    return function debounced() {
+      if ( timeout ) {
+        clearTimeout( timeout );
+      }
+      function delayed() {
+        fn();
+        timeout = null;
+      }
+      timeout = setTimeout( delayed, threshold || 100 );
+    }
+  }
+
+  $('#searchclear').on('click', function(){
+    qsRegex = new RegExp( $quicksearch.val(''), 'gi' );
+    $container.isotope();
+  });
+
+  //--- Confirm delete asset, disable button
+  $('.confirm-delete').on('click', function(){
+    $(this).attr('disabled', 'disabled');
+  });
+
+  $container.children().draggable({
+    connectToSortable: "#loop-edit-list",
+    helper: "clone",
+    revert: "invalid"
+  });
+
+});
+
+</script>

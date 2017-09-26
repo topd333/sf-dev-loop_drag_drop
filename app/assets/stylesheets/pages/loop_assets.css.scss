@@ -1,0 +1,77 @@
+//-- App components
+@import "../common/nav";
+@import "../common/vars";
+@import "../common/overrides";
+
+//-- Loop Index Page
+
+body.loop_assets {
+  #save-button-wrapper {
+    text-align: right;
+  }
+
+  .loop-list-container,  .loop-assets-wrapper {
+    height: 100%;
+    width: 100%;
+    display: table;
+    padding: 0px;
+
+    >div{
+      display: table-cell;
+
+      @media screen and (max-width: 990px){
+        display: block;
+      }
+    }
+
+    .item{
+      .loop-asset-count {
+        font-size:12px;
+        font-weight: 200;
+      }
+    }
+
+    .loops-wrapper{
+      width: 70%;
+      border-right: 1px solid black;
+
+      @media screen and (max-width: 990px){
+        width: 100%;
+        border-bottom: 1px solid black;
+        border-right: none;
+      }
+    }
+
+    .new-loop-wrapper{
+      width: 30%;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+
+
+      .new-loop-button-wrapper{
+        background: gainsboro;
+        color: white;
+        width: 200px;
+        height: 200px;
+        border-radius: 20px;
+        font-size: 30px;
+        margin-left: auto;
+        margin-right: auto;
+
+        &:hover{
+          background-color: lightgrey;
+        }
+
+        .new-loop-button-text-wrapper{
+          font-weight: 700;
+        }
+
+        [class^="flaticon-"]:before, [class*=" flaticon-"]:before{
+          margin: 0px;
+          font-size: 100px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+<%= render partial: 'admin/shared/admin_nav' %>
+
+<h1>Listing admin_hardware_types</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Model number</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @admin_hardware_types.each do |admin_hardware_type| %>
+      <tr>
+        <td><%= admin_hardware_type.model_number %></td>
+        <td><%= admin_hardware_type.description %></td>
+        <td><%= link_to 'Show', admin_hardware_type %></td>
+        <td><%= link_to 'Edit', edit_admin_hardware_type_path(admin_hardware_type) %></td>
+        <td><%= link_to 'Destroy', admin_hardware_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Hardware type', new_admin_hardware_type_path %>

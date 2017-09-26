@@ -1,0 +1,27 @@
+<%= form_for(@loop_asset, html: {class: "form-horizontal"}) do |f| %>
+  <% if @loop_asset.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@loop_asset.errors.count, "error") %> prohibited this loop_asset from being saved:</h2>
+
+      <ul>
+      <% @loop_asset.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <label for="displayname" class="col-sm-3 control-label">Name</label>
+    <div class="col-sm-8">
+      <%= f.text_field :displayname, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-8">
+       <%= f.submit "Create Loop", class: "btn btn-primary" %>
+    </div>
+  </div>
+
+<% end %>

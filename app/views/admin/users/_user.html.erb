@@ -1,0 +1,10 @@
+<!-- ADMIN PAGE -->
+
+<li>
+	<%= link_to user.organization.name, admin_organization_path(user.organization) %>
+	| <%= link_to user.name, admin_user_path(user) %>
+	<% if current_user.orgadmin? && !current_user?(user) && !user.soadmin? %>
+		| <%= link_to "edit", edit_admin_user_path(user) %>
+		| <%= link_to "delete", [:admin, user], method: :delete, data: { confirm: "You sure?" } %>
+	<% end %>
+</li>

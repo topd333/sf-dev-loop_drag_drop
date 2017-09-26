@@ -1,0 +1,7 @@
+<ul class="nav nav-tabs">
+	<li <%= 'class=active' if request.env['PATH_INFO'].starts_with?('/admin/organizations') %> role="presentation"><%= link_to 'Organizations', admin_organizations_path %></li>
+	<li <%= 'class=active' if request.env['PATH_INFO'].starts_with?('/admin/players') %> role="presentation"><%= link_to 'Players', admin_players_path %></li>
+	<li <%= 'class=active' if request.env['PATH_INFO'].starts_with?('/admin/users') %> role="presentation"><%= link_to 'Users', admin_users_path %></li>
+	<li <%= 'class=active' if request.env['PATH_INFO'].starts_with?('/admin/hardware_types') %> role="presentation"><%= link_to 'Hardware Types', admin_hardware_types_path %></li>
+	<li <%= 'class=active' if request.env['PATH_INFO'].starts_with?('/admin/pay_programs') %> role="presentation"><%= link_to 'Payment Plans', admin_pay_programs_path %></li>
+</ul>

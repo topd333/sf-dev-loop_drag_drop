@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-md-6 no-gutter">
+    <h1 class="page-title campaign-name"></h1>
+  </div>
+  <div class="col-md-6 text-right actions campaign-actions no-padding">
+
+  </div>
+</div>
+<hr class="page-title-hr">
+<br/>
+
+
+<div class="row">
+  <div class="col-md-offset-2 col-md-6 login-well">
+
+    <%= form_for(:session, url: login_path, html: {class: "form-horizontal"}) do |f| %>
+
+      <div class="form-group text-center">
+        <a href="<%= root_path %>"><span class="icon-logo login"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span><span class="path11"></span><span class="path12"></span><span class="path13"></span><span class="path14"></span><span class="path15"></span></span></a>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="email">Email:</label>
+        <div class="col-sm-10">
+          <%= f.text_field :email, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="password">Password:</label>
+        <div class="col-sm-10">
+          <%= f.password_field :password, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <div class="checkbox">
+            <label><%= f.check_box :remember_me %> Remember me</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Log in</button>
+        </div>
+      </div>
+
+    <% end %>
+  </div>
+</div>

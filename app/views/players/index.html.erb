@@ -1,0 +1,49 @@
+<h1>Listing players</h1>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Running Campaign</th>
+      <th>Last Connected</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @players.each do |player| %>
+      <tr>
+        <td><%= link_to player.name, player %></td>
+        <td><%= player.description %></td>
+        <td><%= player.campaign.displayname if player.campaign %></td>
+        <td><%= time_ago_in_words(player.last_connection)%> ago</td>
+        <td><%= link_to 'Edit', edit_player_path(player) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+<% if current_user.orgadmin? && !@pendingplayers.empty?%>
+  <h4>Pending Players</h4>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Player Code</th>
+        <th>Access Code</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @pendingplayers.each do |pplayer| %>
+        <tr>
+          <td><%= pplayer.id %></td>
+          <td><%= pplayer.access_code %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
